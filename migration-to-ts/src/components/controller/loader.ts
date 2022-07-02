@@ -9,7 +9,7 @@ class Loader {
 
     getResp(
         { endpoint, options = {} }: IQuery,
-        callback: () => void = () => {
+        callback: (data: ILoadedData) => void = () => {
             console.error('No callback for GET response');
         }
     ): void {
@@ -38,7 +38,7 @@ class Loader {
     }
 
     load(method: string, query: IQuery, callback: (data: ILoadedData) => void) {
-        fetch(this.makeUrl(query.options, query.endpoint), { method })
+        fetch(this.makeUrl(query.options || {}, query.endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
             .then((data: ILoadedData) => callback(data))
