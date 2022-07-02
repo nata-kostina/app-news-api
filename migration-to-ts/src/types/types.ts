@@ -1,6 +1,7 @@
 export type TOptions = {
     [key: string]: string;
 };
+
 export interface IQuery {
     endpoint: string;
     options?: TOptions;
@@ -37,8 +38,6 @@ export interface IGetSourcesResponse {
     sources: ISourceItem[];
     status: string;
 }
-
-export type TUnionResponse = IGetNewsResponse | IGetSourcesResponse;
 
 export type Callback<T> = (data?: T) => void;
 
