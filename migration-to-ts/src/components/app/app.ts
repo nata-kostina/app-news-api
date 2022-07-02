@@ -1,10 +1,6 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
-//const { AppController } = require('../controller/controller');
-//const { AppView } = require('../view/appView');
-interface IData {
-    body: string;
-}
+
 class App {
     private controller: AppController;
     private view: AppView;
