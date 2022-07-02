@@ -38,6 +38,10 @@ export interface IGetSourcesResponse {
     status: string;
 }
 
+export type TUnionResponse = IGetNewsResponse | IGetSourcesResponse;
+
+export type Callback<T> = (data?: T) => void;
+
 export const enum HTTPStatusCode {
     Continue = 100,
     SwitchingProtocols = 101,

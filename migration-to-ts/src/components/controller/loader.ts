@@ -1,5 +1,5 @@
-import { HTTPStatusCode, IQuery, TOptions } from '../../types/types';
-import { ILoadedData } from './../../types/types';
+import { Callback, HTTPStatusCode, IQuery, TOptions } from '../../types/types';
+import { IGetNewsResponse, IGetSourcesResponse } from './../../types/types';
 
 class Loader {
     constructor(private readonly baseLink: string, private readonly options: TOptions) {
@@ -7,9 +7,9 @@ class Loader {
         this.options = options;
     }
 
-    getResp(
+    getResp<T>(
         { endpoint, options = {} }: IQuery,
-        callback: (data: ILoadedData) => void = () => {
+        callback: Callback<T> = () => {
             console.error('No callback for GET response');
         }
     ): void {
@@ -37,11 +37,11 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, query: IQuery, callback: (data: ILoadedData) => void) {
+    load<T>(method: string, query: IQuery, callback: Callback<T>) {
         fetch(this.makeUrl(query.options || {}, query.endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
-            .then((data: ILoadedData) => callback(data))
+            .then((data: T) => callback(data))
             .catch((err: unknown) => {
                 if (typeof err === 'string') {
                     console.error(err);
