@@ -1,5 +1,4 @@
 import { Callback, HTTPStatusCode, IQuery, TOptions } from '../../types/types';
-import { IGetNewsResponse, IGetSourcesResponse } from './../../types/types';
 
 class Loader {
     constructor(private readonly baseLink: string, private readonly options: TOptions) {
@@ -37,7 +36,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load<T>(method: string, query: IQuery, callback: Callback<T>) {
+    load<T>(method: string, query: IQuery, callback: Callback<T>): void {
         fetch(this.makeUrl(query.options || {}, query.endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
