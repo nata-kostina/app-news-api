@@ -39,7 +39,7 @@ export interface IGetSourcesResponse {
     status: string;
 }
 
-export type Callback<T> = (data?: T) => void;
+export type TCallbackVoid<T> = (data?: T) => void;
 
 export const enum HTTPStatusCode {
     Continue = 100,
