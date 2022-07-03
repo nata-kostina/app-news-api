@@ -1,6 +1,7 @@
 import { IGetNewsResponse, IGetSourcesResponse } from '../../types/types';
 import News from './news/news';
 import Sources from './sources/sources';
+import { ISourceItem } from './../../types/types';
 
 export class AppView {
     private readonly news: News;
@@ -17,6 +18,11 @@ export class AppView {
 
     drawSources(data?: IGetSourcesResponse): void {
         const values = data?.sources ? data?.sources : [];
+        this.sources.draw(values);
+    }
+
+    drawSortedSources(data: ISourceItem[]): void {
+        const values = data || [];
         this.sources.draw(values);
     }
 }

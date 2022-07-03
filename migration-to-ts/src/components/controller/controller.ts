@@ -1,5 +1,5 @@
 import AppLoader from './appLoader';
-import { TCallbackVoid, IGetNewsResponse, IGetSourcesResponse } from './../../types/types';
+import { TCallbackVoid, IGetNewsResponse, IGetSourcesResponse, ISourceItem } from './../../types/types';
 
 class AppController extends AppLoader {
     getSources(callback: TCallbackVoid<IGetSourcesResponse>): void {
@@ -34,6 +34,21 @@ class AppController extends AppLoader {
             }
             target = target.parentNode as HTMLElement;
         }
+    }
+
+    sortSources(e: MouseEvent, sourceResponse: IGetSourcesResponse, callback: TCallbackVoid<ISourceItem[]>): void {
+        e.preventDefault();
+        const target = e.target as HTMLElement;
+        const navItems = document.querySelectorAll('.nav__item');
+        navItems.forEach((item) => item.classList.remove('active'));
+        target.classList.add('active');
+        let sorted: ISourceItem[];
+        if (target.innerHTML === 'All') sorted = sourceResponse.sources;
+        else
+            sorted = sourceResponse.sources.filter(
+                (source) => source.name[0].toLowerCase() === target.innerHTML.toLowerCase()
+            );
+        callback(sorted);
     }
 }
 
