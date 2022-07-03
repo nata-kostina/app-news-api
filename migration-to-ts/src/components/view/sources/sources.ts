@@ -1,4 +1,3 @@
-import './sources.css';
 import { ISourceItem } from './../../../types/types';
 
 class Sources {
