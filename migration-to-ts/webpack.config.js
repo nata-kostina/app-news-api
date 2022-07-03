@@ -17,6 +17,10 @@ const baseConfig = {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
             },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
         ],
     },
     resolve: {
