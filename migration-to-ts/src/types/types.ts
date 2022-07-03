@@ -2,9 +2,12 @@ export type TOptions = {
     [key: string]: string;
 };
 
+export type TCallbackVoid<T> = (data?: T) => void;
+
 export interface IQuery {
     endpoint: string;
     options?: TOptions;
+    method?: string;
 }
 
 export interface INewsItem {
@@ -38,8 +41,6 @@ export interface IGetSourcesResponse {
     sources: ISourceItem[];
     status: string;
 }
-
-export type TCallbackVoid<T> = (data?: T) => void;
 
 export const enum HTTPStatusCode {
     Continue = 100,
