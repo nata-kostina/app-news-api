@@ -7,12 +7,12 @@ class Loader {
     }
 
     getResp<T>(
-        { endpoint, options = {} }: IQuery,
+        query: IQuery,
         callback: TCallbackVoid<T> = () => {
             console.error('No callback for GET response');
         }
     ): void {
-        this.load('GET', { endpoint, options }, callback);
+        this.load(query, callback);
     }
 
     errorHandler(res: Response): Response {
@@ -25,9 +25,9 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: TOptions, endpoint: string): string {
-        const urlOptions: TOptions = { ...this.options, ...options };
-        let url = `${this.baseLink}${endpoint}?`;
+    makeUrl(query: Partial<IQuery>): string {
+        const urlOptions: TOptions = { ...this.options, ...query.options };
+        let url = `${this.baseLink}${query.endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
             url += `${key}=${urlOptions[key]}&`;
@@ -36,8 +36,8 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load<T>(method: string, query: IQuery, callback: TCallbackVoid<T>): void {
-        fetch(this.makeUrl(query.options || {}, query.endpoint), { method })
+    load<T>(query: IQuery, callback: TCallbackVoid<T>): void {
+        fetch(this.makeUrl(query), { method: query.method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
             .then((data: T) => callback(data))
