@@ -2,7 +2,7 @@ export type TOptions = {
     [key: string]: string;
 };
 
-export type TCallbackVoid<T> = (data?: T) => void;
+export type TCallbackVoid<T> = (data: T) => void;
 
 export interface IQuery {
     endpoint: string;
