@@ -1,0 +1,10 @@
+@import "./styles/abstracts/variables.scss";
+@import "./styles/abstracts/mixins.scss";
+@import "./styles/base/normalize.scss";
+@import "./styles/base/typography.scss";
+
+@import "./styles/layout/header";
+@import "./styles/layout/footer";
+
+@import "./styles/components/sources";
+@import "./styles/components/news";
