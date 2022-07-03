@@ -1,0 +1,27 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+}
+
+.nav__item {
+  display: block;
+
+  font-family: 'Oswald', sans-serif;
+  font-size: 2em;
+  color: $color-dark-m;
+
+  text-decoration: none;
+
+  padding:  0.5em;   
+  text-transform: uppercase;
+}
+
+.nav__item.active,
+.nav__item:hover, 
+.nav__item:active, 
+.nav__item:focus {
+  color: $color-main;
+}

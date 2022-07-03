@@ -1,0 +1,9 @@
+.main {
+  flex: 1 1 100%;
+  
+  background-color: $color-light-xs;
+
+  & .main__inner {
+    padding: 3em 0;
+  }
+}

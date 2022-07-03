@@ -17,7 +17,7 @@ class State {
     }
 
     getSources(): ISourceItem[] {
-        return this.sources ? this.sources : this.sourceResponse.sources;
+        return this.sources;
     }
 
     getCurrentSource(): ISourceItem {

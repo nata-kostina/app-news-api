@@ -1,0 +1,14 @@
+.footer {
+  flex: 0 1 auto;
+
+  padding: 2em;
+  background-color: $color-main-light;
+  &__inner {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.dev-date {
+  //padding-top: 0.5em;
+}

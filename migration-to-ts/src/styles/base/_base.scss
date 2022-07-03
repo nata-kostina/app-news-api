@@ -1,0 +1,22 @@
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-size: $font-size-m;
+}
+
+p {
+  margin: 0;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url("./assets/fonts/Oswald-Regular.ttf");
+  font-weight: normal;      
+}
+
+@media screen and (max-width: $media-phone) {
+  body{
+    font-size: $font-size-s;
+  }
+}

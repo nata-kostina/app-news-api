@@ -21,6 +21,7 @@ class App {
             this.view.drawSources(data);
         });
         navigation.addEventListener('click', (e) => {
+            const response = this.state.getSourceResponse();
             this.controller.sortSources(e, this.state.getSourceResponse(), (data) => this.state.setSources(data));
             this.view.drawSortedSources(this.state.getSources());
         });

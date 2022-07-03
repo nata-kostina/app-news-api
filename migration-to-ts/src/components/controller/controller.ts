@@ -38,6 +38,7 @@ class AppController extends AppLoader {
 
     sortSources(e: MouseEvent, sourceResponse: IGetSourcesResponse, callback: TCallbackVoid<ISourceItem[]>): void {
         e.preventDefault();
+        if (!sourceResponse?.sources) return;
         const target = e.target as HTMLElement;
         const navItems = document.querySelectorAll('.nav__item');
         navItems.forEach((item) => item.classList.remove('active'));

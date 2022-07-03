@@ -1,0 +1,16 @@
+.header {
+  flex: 0 1 auto; 
+  background-color: $color-dark-xl;
+
+  & .header__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .header__title {
+      font-family: 'Oswald', sans-serif;
+      color: $color-main;
+      font-size: 4em;
+    }
+  }
+}
