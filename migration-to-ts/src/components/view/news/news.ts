@@ -30,9 +30,6 @@ class News {
 
                 fragment.append(newsClone);
             });
-            const currentSource = document.createElement('p');
-            currentSource.classList.add('source__item', 'source__item_current');
-            currentSource.insertAdjacentText('beforebegin', `${state.getCurrentSource().name}`);
             (document.querySelector('.sources') as HTMLElement).innerHTML = '';
             (document.querySelector('.news') as HTMLElement).innerHTML = '';
             (document.querySelector('.news') as HTMLElement).appendChild(fragment);

@@ -15,6 +15,7 @@ class App {
         const navigation = document.querySelector('.alphabetic-nav') as HTMLElement;
         const sources = document.querySelector('.sources') as HTMLElement;
         sources?.addEventListener('click', (e) => {
+            debugger;
             this.controller.getNews(
                 e,
                 (data) => {

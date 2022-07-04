@@ -2,7 +2,6 @@ import { IGetSourcesResponse, ISourceItem } from './../../types/types';
 class State {
     private sourceResponse: IGetSourcesResponse;
     private sources: ISourceItem[];
-    private currentSource: ISourceItem;
     private isAuth = false;
 
     setSourceResponse(sourceResponse: IGetSourcesResponse | { sources: []; status: 'default' }): void {
@@ -20,14 +19,6 @@ class State {
 
     getSources(): ISourceItem[] {
         return this.sources;
-    }
-
-    getCurrentSource(): ISourceItem {
-        return this.currentSource;
-    }
-
-    setCurrentSource(source: ISourceItem): void {
-        this.currentSource = source;
     }
 
     setIsAuth(value: boolean): void {
