@@ -42,6 +42,11 @@ export interface IGetSourcesResponse {
     status: string;
 }
 
+export interface IFilter {
+    category: string;
+    language: string;
+}
+
 export const enum HTTPStatusCode {
     Continue = 100,
     SwitchingProtocols = 101,

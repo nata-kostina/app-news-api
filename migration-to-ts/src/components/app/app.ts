@@ -57,6 +57,12 @@ class App {
                 else this.view.drawMessage('Ooops! The sources were not found.');
             }
         });
+
+        const form = document.getElementById('form') as HTMLFormElement;
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            this.controller.filterSources((data) => this.view.drawSortedSources(data));
+        });
     }
 }
 

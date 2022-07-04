@@ -1,5 +1,5 @@
 import AppLoader from './appLoader';
-import { TCallbackVoid, IGetNewsResponse, IGetSourcesResponse, ISourceItem } from './../../types/types';
+import { TCallbackVoid, IGetNewsResponse, IGetSourcesResponse, ISourceItem, IFilter } from './../../types/types';
 import state from './../state/state';
 
 class AppController extends AppLoader {
@@ -54,6 +54,33 @@ class AppController extends AppLoader {
                 (source) => source.name[0].toLowerCase() === target.innerHTML.toLowerCase()
             );
         callback(sorted);
+    }
+
+    filterSources(callback: TCallbackVoid<ISourceItem[]>): void {
+        const navItems = document.querySelectorAll('.nav__item');
+        navItems.forEach((item) => item.classList.remove('active'));
+        const form = document.getElementById('form') as HTMLFormElement;
+        const categorySelection = form.querySelector('#category-selection') as HTMLSelectElement;
+        const valueCategory = categorySelection.options[categorySelection.selectedIndex].value as string;
+        const langSelection = form.querySelector('#lang-selection') as HTMLSelectElement;
+        const valueLang = langSelection.options[langSelection.selectedIndex].value as string;
+        const filter: IFilter = {
+            category: valueCategory,
+            language: valueLang,
+        };
+        const sourcesResponse = state.getSourceResponse() as IGetSourcesResponse;
+        const sources = sourcesResponse.sources as ISourceItem[];
+        if (!sources || sources.length === 0) return;
+        callback(
+            sources.filter((source) => {
+                return (
+                    (filter.category.toLowerCase() === 'all' ||
+                        source.category.toLowerCase() === filter.category.toLowerCase()) &&
+                    (filter.language.toLowerCase() === 'all' ||
+                        source.language.toLowerCase() === filter.language.toLowerCase())
+                );
+            })
+        );
     }
 }
 
