@@ -34,9 +34,9 @@ class Loader {
                 default:
                     errorMessage = res.status
                         ? res.statusText
-                            ? `There is ${res.status} error: ${res.statusText}`
+                            ? `There is ${res.status} error: ${res.statusText}.`
                             : `There is ${res.status} error.`
-                        : 'There is unexpected error';
+                        : 'There is unexpected error.';
             }
             throw Error(errorMessage);
         }

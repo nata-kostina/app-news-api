@@ -15,7 +15,7 @@ class AppController extends AppLoader {
 
     getNews(e: MouseEvent, callback: TCallbackVoid<IGetNewsResponse>, handleError: TCallbackVoid<Error>): void {
         let target = e.target as HTMLElement;
-        const newsContainer = e.currentTarget as HTMLElement;
+        const newsContainer = e.currentTarget as HTMLDivElement;
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const sourceId = target.getAttribute('data-source-id') as string;
@@ -40,8 +40,16 @@ class AppController extends AppLoader {
         }
     }
 
-    sortSources(e: MouseEvent, sourceResponse: IGetSourcesResponse, callback: TCallbackVoid<ISourceItem[]>): void {
+    filterSourcesQuick(
+        e: MouseEvent,
+        sourceResponse: IGetSourcesResponse,
+        callback: TCallbackVoid<ISourceItem[]>
+    ): void {
         e.preventDefault();
+        const categorySelection = document.querySelector('#category-selection') as HTMLSelectElement;
+        categorySelection.value = 'all';
+        const langSelection = document.querySelector('#lang-selection') as HTMLSelectElement;
+        langSelection.value = 'all';
         const target = e.target as HTMLElement;
         const navItems = document.querySelectorAll('.nav__item');
         navItems.forEach((item) => item.classList.remove('active'));
@@ -56,7 +64,7 @@ class AppController extends AppLoader {
         callback(sorted);
     }
 
-    filterSources(callback: TCallbackVoid<ISourceItem[]>): void {
+    filterSourcesAdvanced(callback: TCallbackVoid<ISourceItem[]>): void {
         const navItems = document.querySelectorAll('.nav__item');
         navItems.forEach((item) => item.classList.remove('active'));
         const form = document.getElementById('form') as HTMLFormElement;
