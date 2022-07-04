@@ -1,5 +1,4 @@
 import { INewsItem } from '../../../types/types';
-import state from './../../state/state';
 
 class News {
     draw(data: INewsItem[]): void {

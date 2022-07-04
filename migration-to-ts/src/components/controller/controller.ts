@@ -19,8 +19,6 @@ class AppController extends AppLoader {
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const sourceId = target.getAttribute('data-source-id') as string;
-                const source = state.getSources().find((s) => s.id === sourceId) as ISourceItem;
-
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
                     newsContainer.setAttribute('data-source', sourceId);
                     super.getResp(
