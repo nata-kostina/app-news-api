@@ -3,9 +3,11 @@ class State {
     private sourceResponse: IGetSourcesResponse;
     private sources: ISourceItem[];
     private currentSource: ISourceItem;
+    private isAuth = false;
 
-    setSourceResponse(sources: IGetSourcesResponse | { sources: []; status: 'default' }): void {
-        this.sourceResponse = sources;
+    setSourceResponse(sourceResponse: IGetSourcesResponse | { sources: []; status: 'default' }): void {
+        this.sourceResponse = sourceResponse;
+        this.setSources(sourceResponse.sources);
     }
 
     getSourceResponse(): IGetSourcesResponse {
@@ -24,9 +26,16 @@ class State {
         return this.currentSource;
     }
 
-    setCurrentSource(source: ISourceItem) {
+    setCurrentSource(source: ISourceItem): void {
         this.currentSource = source;
     }
-}
 
-export default State;
+    setIsAuth(value: boolean): void {
+        this.isAuth = value;
+    }
+    getIsAuth(): boolean {
+        return this.isAuth;
+    }
+}
+const state = new State();
+export default state;

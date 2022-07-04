@@ -1,4 +1,5 @@
 import { TCallbackVoid, HTTPStatusCode, IQuery, TOptions } from '../../types/types';
+import state from './../state/state';
 
 class Loader {
     constructor(private readonly baseLink: string, private readonly options: TOptions) {
@@ -10,16 +11,34 @@ class Loader {
         query: IQuery,
         callback: TCallbackVoid<T> = () => {
             console.error('No callback for GET response');
-        }
+        },
+        handleError: TCallbackVoid<Error>
     ): void {
-        this.load(query, callback);
+        this.load(query, callback, handleError);
     }
 
     errorHandler(res: Response): Response {
         if (!res.ok) {
-            if (res.status === HTTPStatusCode.Unauthorized || res.status === HTTPStatusCode.NotFound)
-                console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
-            throw Error(res.statusText);
+            let errorMessage = '';
+            switch (res.status) {
+                case HTTPStatusCode.Unauthorized:
+                    errorMessage = 'You are not authorized. Check your API key.';
+                    state.setIsAuth(false);
+                    break;
+                case HTTPStatusCode.NotFound:
+                    errorMessage = 'The page was not found';
+                    break;
+                case HTTPStatusCode.TooManyRequests:
+                    errorMessage = 'You did too many requests.';
+                    break;
+                default:
+                    errorMessage = res.status
+                        ? res.statusText
+                            ? `There is ${res.status} error: ${res.statusText}`
+                            : `There is ${res.status} error.`
+                        : 'There is unexpected error';
+            }
+            throw Error(errorMessage);
         }
 
         return res;
@@ -36,16 +55,15 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load<T>(query: IQuery, callback: TCallbackVoid<T>): void {
+    load<T>(query: IQuery, callback: TCallbackVoid<T>, handleError: TCallbackVoid<Error>): void {
         fetch(this.makeUrl(query), { method: query.method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
-            .then((data: T) => callback(data))
-            .catch((err: unknown) => {
-                if (typeof err === 'string') {
-                    console.error(err);
-                }
-            });
+            .then((data: T) => {
+                callback(data);
+                state.setIsAuth(true);
+            })
+            .catch((err: Error) => handleError(err));
     }
 }
 

@@ -1,29 +1,61 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
-import State from './../state/state';
+import state from './../state/state';
 
 class App {
     private controller: AppController;
     private view: AppView;
-    private state: State;
+
     constructor() {
         this.controller = new AppController();
         this.view = new AppView();
-        this.state = new State();
     }
 
     start(): void {
         const navigation = document.querySelector('.alphabetic-nav') as HTMLElement;
         const sources = document.querySelector('.sources') as HTMLElement;
-        sources?.addEventListener('click', (e) => this.controller.getNews(e, (data) => this.view.drawNews(data)));
-        this.controller.getSources((data) => {
-            this.state.setSourceResponse(data);
-            this.view.drawSources(data);
-        });
+        sources?.addEventListener('click', (e) =>
+            this.controller.getNews(
+                e,
+                (data) => {
+                    this.view.clearAll();
+                    if (data && data.articles.length > 0) {
+                        this.view.drawNews(data);
+                    } else {
+                        this.view.drawMessage('Ooops! The news were not found.');
+                    }
+                },
+                (error: Error) => {
+                    this.view.clearAll();
+                    this.view.drawMessage(`Ooops! ${error.message}`);
+                }
+            )
+        );
+        this.controller.getSources(
+            (data) => {
+                this.view.clearAll();
+                if (data && data.sources.length > 0) {
+                    state.setSourceResponse(data);
+                    this.view.drawSources(data);
+                } else {
+                    this.view.drawMessage('Ooops! The sources were not found.');
+                }
+            },
+            (error: Error) => {
+                this.view.clearAll();
+                this.view.drawMessage(`Ooops! ${error.message}`);
+            }
+        );
         navigation.addEventListener('click', (e) => {
-            const response = this.state.getSourceResponse();
-            this.controller.sortSources(e, this.state.getSourceResponse(), (data) => this.state.setSources(data));
-            this.view.drawSortedSources(this.state.getSources());
+            this.view.clearAll();
+            const response = state.getSourceResponse();
+            this.controller.sortSources(e, response, (data) => state.setSources(data));
+            if (!state.getIsAuth()) this.view.drawMessage('Ooops! You are not authorized. Check your API key.');
+            else {
+                if (state.getSources() && state.getSources().length > 0)
+                    this.view.drawSortedSources(state.getSources());
+                else this.view.drawMessage('Ooops! The sources were not found.');
+            }
         });
     }
 }

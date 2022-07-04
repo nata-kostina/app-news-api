@@ -6,7 +6,6 @@ class Sources {
         const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
         const sourcesDiv = document.querySelector('.sources') as HTMLElement;
         if (data && data.length > 0) {
-            console.log(data);
             data.forEach((item) => {
                 const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
 
@@ -20,13 +19,11 @@ class Sources {
             });
             sourcesDiv.innerHTML = '';
             sourcesDiv.append(fragment);
-        } else {
-            const message = document.createElement('p');
-            message.classList.add('message');
-            message.insertAdjacentText('afterbegin', 'Ooops! The sources were not found.');
-            sourcesDiv.innerHTML = '';
-            sourcesDiv.append(message);
         }
+    }
+
+    clear(): void {
+        (document.querySelector('.sources') as HTMLElement).innerHTML = '';
     }
 }
 
