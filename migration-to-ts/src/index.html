@@ -21,7 +21,7 @@
       <div class="container">
         <div class="main__inner">
           <section class="section quick-filter">
-            <h2 class="section-title">Quick Filter:</h2>
+            <h2 class="section__title">Quick Filter:</h2>
             <nav class="nav alphabetic-nav">
               <a href="#All" class="nav__item active">All</a>
               <a href="#A" class="nav__item">A</a>
@@ -53,33 +53,38 @@
             </nav>
           </section>
           <section class="section advanced-filter">
-            <h2 class="section-title">Advanced Filter:</h2>
-            <form action="" id="form">
-
-              <label for="cars">Choose a category:</label>
-              <select name="category" id="category-selection">
-                <option value="all">All categories</option>
-                <option value="business">Business</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="general">General</option>
-                <option value="health">Health</option>
-                <option value="science">Science</option>
-                <option value="sports">Sports</option>
-                <option value="technology">Technology</option>
-              </select>
-
-              <select name="language" id="lang-selection">
-                <option value="all">All language</option>
-                <option value="en">EN</option>
-                <option value="ru">RU</option>
-                <option value="es">ES</option>
-                <option value="fr">FR</option>
-                <option value="de">DE</option>
-                <option value="it">IT</option>
-                <option value="ar">AE</option>
-                <option value="he">HE</option>
-              </select>
-              <input type="submit" value="Search">
+            <h2 class="section__title">Advanced Filter:</h2>
+            <form class="form" id="form">
+              <div class="fields">
+                <div class="selection-group">
+                  <label for="category" class="label selection-label">Choose category:</label>
+                  <select name="category" id="category-selection" class="selection">
+                    <option value="all">All categories</option>
+                    <option value="business">Business</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="general">General</option>
+                    <option value="health">Health</option>
+                    <option value="science">Science</option>
+                    <option value="sports">Sports</option>
+                    <option value="technology">Technology</option>
+                  </select>
+                </div>
+                <div class="selection-group">
+                  <label for="language" class="label selection-label">Choose language:</label>
+                  <select name="language" id="lang-selection" class="selection">
+                    <option value="all">All languages</option>
+                    <option value="en">EN</option>
+                    <option value="ru">RU</option>
+                    <option value="es">ES</option>
+                    <option value="fr">FR</option>
+                    <option value="de">DE</option>
+                    <option value="it">IT</option>
+                    <option value="ar">AE</option>
+                    <option value="he">HE</option>
+                  </select>
+                </div>
+              </div>
+              <input type="submit" value="Search" class="btn btn-submit">
             </form>
           </section>
           <div class="sources buttons"></div>
