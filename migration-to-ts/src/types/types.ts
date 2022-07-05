@@ -75,6 +75,7 @@ export const enum HTTPStatusCode {
     NotFound = 404,
     MethodNotAllowed = 405,
     NotAcceptable = 406,
+    TooManyRequests = 429,
 
     /**
      * Some `4xx` error codes.
@@ -85,7 +86,8 @@ export const enum HTTPStatusCode {
         Forbidden |
         NotFound |
         MethodNotAllowed |
-        NotAcceptable,
+        NotAcceptable |
+        TooManyRequests,
 
     InternalServerError = 500,
     NotImplemented = 501,
