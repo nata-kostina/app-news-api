@@ -10,10 +10,16 @@ export interface IQuery {
     method?: string;
 }
 
-export type TNewsSource = {
+export interface ISourceItem {
+    category: string;
+    country: string;
+    description: string;
     id: string;
+    language: string;
     name: string;
-};
+    url: string;
+}
+type TNewsSource = Pick<ISourceItem, 'id' | 'name'>;
 
 export interface INewsItem {
     author: string;
@@ -24,16 +30,6 @@ export interface INewsItem {
     title: string;
     url: string;
     urlToImage: string;
-}
-
-export interface ISourceItem {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
 }
 
 export interface IGetNewsResponse {
