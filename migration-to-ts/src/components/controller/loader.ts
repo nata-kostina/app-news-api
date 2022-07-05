@@ -1,5 +1,5 @@
 import { TCallbackVoid, HTTPStatusCode, IQuery, TOptions } from '../../types/types';
-import state from './../state/state';
+import state from '../state/state';
 
 class Loader {
     constructor(private readonly baseLink: string, private readonly options: TOptions) {

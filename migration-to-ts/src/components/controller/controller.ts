@@ -1,6 +1,6 @@
 import AppLoader from './appLoader';
 import { TCallbackVoid, IGetNewsResponse, IGetSourcesResponse, ISourceItem, IFilter } from './../../types/types';
-import state from './../state/state';
+import state from '../state/state';
 
 class AppController extends AppLoader {
     getSources(callback: TCallbackVoid<IGetSourcesResponse>, handleError: TCallbackVoid<Error>): void {

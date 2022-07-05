@@ -1,4 +1,4 @@
-import { ISourceItem } from './../../../types/types';
+import { ISourceItem } from '../../../types/types';
 
 class Sources {
     draw(data: ISourceItem[]) {

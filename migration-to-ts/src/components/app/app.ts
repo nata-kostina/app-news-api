@@ -1,6 +1,6 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
-import state from './../state/state';
+import state from '../state/state';
 
 class App {
     private controller: AppController;

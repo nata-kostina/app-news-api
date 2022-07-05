@@ -1,4 +1,4 @@
-import { IGetSourcesResponse, ISourceItem } from './../../types/types';
+import { IGetSourcesResponse, ISourceItem } from '../../types/types';
 class State {
     private sourceResponse: IGetSourcesResponse;
     private sources: ISourceItem[];

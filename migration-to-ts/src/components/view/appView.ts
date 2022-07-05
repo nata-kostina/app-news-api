@@ -1,7 +1,7 @@
 import { IGetNewsResponse, IGetSourcesResponse } from '../../types/types';
 import News from './news/news';
 import Sources from './sources/sources';
-import { ISourceItem } from './../../types/types';
+import { ISourceItem } from '../../types/types';
 import Message from './message/message';
 
 export class AppView {
