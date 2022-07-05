@@ -74,8 +74,8 @@ class AppController extends AppLoader {
             category: valueCategory,
             language: valueLang,
         };
-        const sourcesResponse = state.getSourceResponse() as IGetSourcesResponse;
-        const sources = sourcesResponse.sources as ISourceItem[];
+        const sourcesResponse = state.getSourceResponse();
+        const sources = sourcesResponse.sources;
         if (!sources || sources.length === 0) return;
         callback(
             sources.filter((source) => {

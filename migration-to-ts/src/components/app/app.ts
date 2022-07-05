@@ -59,6 +59,7 @@ class App {
         const form = document.getElementById('form') as HTMLFormElement;
         form.addEventListener('click', (e) => {
             const target = e.target as HTMLElement;
+            console.log(target);
             if (target.closest('.selection')) {
                 const navItems = document.querySelectorAll('.nav__item');
                 navItems.forEach((item) => item.classList.remove('active'));
