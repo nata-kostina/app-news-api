@@ -77,13 +77,13 @@ class AppController extends AppLoader {
         const sourcesResponse = state.getSourceResponse();
         const sources = sourcesResponse.sources;
         if (!sources || sources.length === 0) return;
+        const filterCategory = filter.category.toLowerCase();
+        const filterLanguage = filter.language.toLowerCase();
         callback(
             sources.filter((source) => {
                 return (
-                    (filter.category.toLowerCase() === 'all' ||
-                        source.category.toLowerCase() === filter.category.toLowerCase()) &&
-                    (filter.language.toLowerCase() === 'all' ||
-                        source.language.toLowerCase() === filter.language.toLowerCase())
+                    (filterCategory === 'all' || source.category.toLowerCase() === filterCategory) &&
+                    (filterLanguage === 'all' || source.language.toLowerCase() === filterLanguage)
                 );
             })
         );
