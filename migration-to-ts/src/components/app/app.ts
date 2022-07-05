@@ -51,11 +51,9 @@ class App {
             const response = state.getSourceResponse();
             this.controller.filterSourcesQuick(e, response, (data) => state.setSources(data));
             if (!state.getIsAuth()) this.view.drawMessage('Ooops! You are not authorized. Check your API key.');
-            else {
-                if (state.getSources() && state.getSources().length > 0)
-                    this.view.drawSortedSources(state.getSources());
-                else this.view.drawMessage('Ooops! The sources were not found.');
-            }
+            else if (state.getSources() && state.getSources().length > 0)
+                this.view.drawSortedSources(state.getSources());
+            else this.view.drawMessage('Ooops! The sources were not found.');
         });
 
         const form = document.getElementById('form') as HTMLFormElement;
