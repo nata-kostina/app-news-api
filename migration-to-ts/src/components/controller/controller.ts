@@ -52,7 +52,7 @@ class AppController extends AppLoader {
         const navItems = document.querySelectorAll('.nav__item');
         navItems.forEach((item) => item.classList.remove('active'));
         target.classList.add('active');
-        if (!sourceResponse?.sources) return;
+        if (!sourceResponse.sources) return;
         let sorted: ISourceItem[];
         if (target.innerHTML === 'All') sorted = sourceResponse.sources;
         else
