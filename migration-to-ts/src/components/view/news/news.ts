@@ -23,8 +23,10 @@ class News {
                     .join('-');
 
                 (newsClone.querySelector('.news__description-title') as HTMLHeadingElement).textContent = item.title;
-                (newsClone.querySelector('.news__description-source') as HTMLHeadingElement).textContent = item.source.name;
-                (newsClone.querySelector('.news__description-content') as HTMLParagraphElement).textContent = item.description;
+                (newsClone.querySelector('.news__description-source') as HTMLHeadingElement).textContent =
+                    item.source.name;
+                (newsClone.querySelector('.news__description-content') as HTMLParagraphElement).textContent =
+                    item.description;
                 (newsClone.querySelector('.news__read-more a') as HTMLAnchorElement).setAttribute('href', item.url);
 
                 fragment.append(newsClone);
