@@ -10,12 +10,17 @@ export interface IQuery {
     method?: string;
 }
 
+export type TNewsSource = {
+    id: string;
+    name: string;
+};
+
 export interface INewsItem {
     author: string;
     content: string;
     description: string;
     publishedAt: string;
-    source: { id: string; name: string };
+    source: TNewsSource;
     title: string;
     url: string;
     urlToImage: string;
